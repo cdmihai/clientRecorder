@@ -22,6 +22,7 @@ import edu.oregonstate.cope.clientRecorder.RecorderFacade;
 import edu.oregonstate.cope.clientRecorder.StorageManager;
 import edu.oregonstate.cope.clientRecorder.Uninstaller;
 import edu.oregonstate.cope.clientRecorder.util.LoggerInterface;
+import edu.oregonstate.cope.eclipse.listeners.CommandExecutionListener;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -48,6 +49,8 @@ public class COPEPlugin extends AbstractUIPlugin implements StorageManager {
 	private ClientRecorder clientRecorder;
 
 	public static final List<String> knownTextFiles = Arrays.asList(new String[]{"txt", "java", "xml", "mf", "c", "cpp", "c", "h"});
+
+	private CommandExecutionListener commandListener;
 
 	/**
 	 * The constructor
@@ -229,5 +232,13 @@ public class COPEPlugin extends AbstractUIPlugin implements StorageManager {
 	
 	public RecorderFacade getRecorder() {
 		return recorderFacade;
+	}
+
+	public void setCommandListener(CommandExecutionListener commandListener) {
+		this.commandListener = commandListener;
+	}
+
+	public CommandExecutionListener getCommandListener() {
+		return commandListener;
 	}
 }
