@@ -113,12 +113,19 @@ class StartPluginUIJob extends UIJob {
 
 		LogoManager logoManager = LogoManager.getInstance();
 		logoManager.showLogo();
+		
+		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+		CommandExecutionListener commandListener = new CommandExecutionListener();
+		commandService.addExecutionListener(commandListener);
+		copePlugin.setCommandListener(commandListener);
+
 		registerDocumentListenersForOpenEditors();
+		
 		FileBuffers.getTextFileBufferManager().addFileBufferListener(new FileBufferListener());
+		
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		workspace.addResourceChangeListener(new ResourceListener(), IResourceChangeEvent.PRE_REFRESH | IResourceChangeEvent.POST_CHANGE);
-		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
-		commandService.addExecutionListener(new CommandExecutionListener());
+		
 		JavaCore.addElementChangedListener(new JavaElementChangedListener(), ElementChangedEvent.POST_CHANGE);
 
 		RefactoringHistoryService refactoringHistoryService = RefactoringHistoryService.getInstance();
