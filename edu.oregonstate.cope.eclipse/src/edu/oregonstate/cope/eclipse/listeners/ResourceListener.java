@@ -155,7 +155,7 @@ public class ResourceListener implements IResourceChangeListener {
 	}
 
 	private boolean isSavedAction() {
-		return CommandExecutionListener.isSaveInProgress();
+		return COPEPlugin.getDefault().getCommandListener().isSaveInProgress();
 	}
 
 	private boolean isRefactoringInProgress() {
