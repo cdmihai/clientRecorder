@@ -16,11 +16,11 @@ import edu.oregonstate.cope.eclipse.COPEPlugin;
 
 public class CommandExecutionListener implements IExecutionListener {
 
-	private static boolean saveInProgress = false;
-	private static boolean cutInProgress = false;
-	private static boolean pasteInProgress = false;
-	private static boolean undoInProgress = false;
-	private static boolean redoInProgress = false;
+	private boolean saveInProgress = false;
+	private boolean cutInProgress = false;
+	private boolean pasteInProgress = false;
+	private boolean undoInProgress = false;
+	private boolean redoInProgress = false;
 
 	@Override
 	public void preExecute(String commandId, ExecutionEvent event) {
@@ -117,23 +117,23 @@ public class CommandExecutionListener implements IExecutionListener {
 	public void notHandled(String commandId, NotHandledException exception) {
 	}
 
-	public static boolean isSaveInProgress() {
+	public boolean isSaveInProgress() {
 		return saveInProgress;
 	}
 	
-	public static boolean isCutInProgress() {
+	public boolean isCutInProgress() {
 		return cutInProgress;
 	}
 	
-	public static boolean isPasteInProgress() {
+	public boolean isPasteInProgress() {
 		return pasteInProgress;
 	}
 	
-	public static boolean isUndoInProgress() {
+	public boolean isUndoInProgress() {
 		return undoInProgress;
 	}
 	
-	public static boolean isRedoInProgress() {
+	public boolean isRedoInProgress() {
 		return redoInProgress;
 	}
 }
